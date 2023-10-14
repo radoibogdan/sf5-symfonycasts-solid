@@ -2,7 +2,9 @@
 
 namespace App;
 
+use App\Scoring\ScoringFactorInterface;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
@@ -35,4 +37,19 @@ class Kernel extends BaseKernel
             (require $path)($routes->withPath($path), $this);
         }
     }
+
+    /**
+     * Override method to inject arguments in services.yaml App\Service\SightingScorer
+     * @param ContainerBuilder $container
+     * @return void
+     */
+    protected function build(ContainerBuilder $container)
+    {
+        parent::build($container);
+        # The classes that implement ScoringFactorInterface will be tagged with scoring.factor tag
+        $container->registerForAutoconfiguration(ScoringFactorInterface::class)
+            ->addTag('scoring.factor');
+    }
+
+
 }
