@@ -38,9 +38,16 @@ services:
     #             - '@App\Scoring\DescriptionFactor'
     #             - '@App\Scoring\CoordinatesFactor'
 
+    # Permet de contourner un message d'erreur
+    # l'instanciation de DebuggableSightingScorer renvera SightingScorer
+    App\Service\DebuggableSightingScorer: '@App\Service\SightingScorer'
+
     # Variante 2 : Inject list of ScoringFactorInterface objects into SightingScorer Class constructor
     # Override build method in Kernel
     # Inject all services that are tagged with scoring.factor
     App\Service\SightingScorer:
+        # Whenever you use SightingScorer (ex: in a Controller) you will get a DebuggableSightingScorer class
+        # Check with debug:container SightingScorer
+        class: App\Service\DebuggableSightingScorer
         arguments:
             $scoringFactors: !tagged_iterator scoring.factor

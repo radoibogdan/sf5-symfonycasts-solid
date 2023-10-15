@@ -23,5 +23,17 @@ Similar to :
  - Strategy Pattern
  - Template Method Pattern
 
+## Liskov substitution principle
+Subtypes must be substitutable for their base types
+Subtypes : class that extends a base class or implements an interface
+
+On a subclass (extends another class) :
+ - You can change the return type if you make it more narrow / more specific type
+ - You can change the argument type hint if you make it more wider / less specific type
+
+
+Look at :
+    Decorator Pattern
+
 [1]: https://127.0.0.1:8000
 [2]: https://dannorth.net/cupid-the-back-story/
