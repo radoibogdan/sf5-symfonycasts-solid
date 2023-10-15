@@ -35,5 +35,9 @@ On a subclass (extends another class) :
 Look at :
     Decorator Pattern
 
+# Interface Segragation Principle
+Clients should not be forced to depend on interfaces that thet do not use.
+Interfaces = the public "stuff" (e.g. methods) of a class
+
 [1]: https://127.0.0.1:8000
 [2]: https://dannorth.net/cupid-the-back-story/

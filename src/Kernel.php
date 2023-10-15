@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Scoring\ScoreAdjusterInterface;
 use App\Scoring\ScoringFactorInterface;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -49,6 +50,8 @@ class Kernel extends BaseKernel
         # The classes that implement ScoringFactorInterface will be tagged with scoring.factor tag
         $container->registerForAutoconfiguration(ScoringFactorInterface::class)
             ->addTag('scoring.factor');
+        $container->registerForAutoconfiguration(ScoreAdjusterInterface::class)
+            ->addTag('scoring.adjuster');
     }
 
 
