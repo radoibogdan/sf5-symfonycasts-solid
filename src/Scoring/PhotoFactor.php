@@ -29,6 +29,10 @@ class PhotoFactor implements ScoringFactorInterface, ScoreAdjusterInterface
         return $finalScore;
     }
 
+    /**
+     * Give a tagged service a higher priority
+     * @return int
+     */
     public static function getDefaultProperty(): int
     {
         # negative priority to include it last
